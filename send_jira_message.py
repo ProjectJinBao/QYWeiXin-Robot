@@ -42,9 +42,9 @@ def send_time():
     while 1 == 1:
         dt_ms = datetime.datetime.now().strftime('%H:%M:%S')
         if dt_ms == "13:42:00" or dt_ms == "13:45:00":
-            print("执行程序")
+            send_message()
             time.sleep(60)
             continue
 
 
-a=search_jira()
+a=send_time()
