@@ -20,7 +20,7 @@ def send_message():
     print(new_num, fixed_num, verified_num)
 
 
-    post_url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=074e0adc-40a5-478a-a7f3-5fbc38c6bc2b'
+    post_url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=ed02f420-63dd-4a45-8816-28c979795d5f'
 
     header = {
         "Content-Type": "application/json"
@@ -30,7 +30,7 @@ def send_message():
         "msgtype": "markdown",
         "markdown": {
             "content": f"DX DMP 2.3.0\n>* <font color=\"warning\">待修复：{new_num}</font>\n>* <font color=\"comment\">已修复：{fixed_num}</font>\n >* <font color=\"info\">已验证：{verified_num}</font>\n  "
-                       ">* <u>[JIRA链接](https://jira.daocloud.io/secure/RapidBoard.jspa?rapidView=305&projectKey=DX&view=detail&selectedIssue=DX-955&sprint=567)<u/>"
+                       ">* [JIRA链接](https://jira.daocloud.io/secure/RapidBoard.jspa?rapidView=305&projectKey=DX&view=detail&selectedIssue=DX-955&sprint=567)"
         }
     })
     payload = payload.encode("utf-8")
@@ -41,7 +41,7 @@ def send_message():
 def send_time():
     while 1 == 1:
         dt_ms = datetime.datetime.now().strftime('%H:%M:%S')
-        if dt_ms == "13:42:00" or dt_ms == "13:45:00":
+        if dt_ms == "09:50:00" or dt_ms == "17:50:00":
             send_message()
             time.sleep(60)
             continue
