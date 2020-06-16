@@ -5,10 +5,14 @@ import time,datetime
 
 #登录jira
 def search_jira():
+    time = datetime.datetime.now().strftime('%Y - %m - %d')
+    print(time)
+    # AND created >= 2020 - 03 - 06
+    # AND created <= 2020 - 03 - 07
     jira = JIRA('https://jira.daocloud.io', basic_auth=('jing.yu', 'YUJINGguanguo99%'))
-    issue_new = len(jira.search_issues('project = "DX" AND Sprint = "DX DMP 2.3.0" AND status = "New"',maxResults=1000))
-    issue_fixed = len(jira.search_issues('project = "DX" AND Sprint = "DX DMP 2.3.0" AND status = "Fixed"',maxResults=1000))
-    issue_verified = len(jira.search_issues('project = "DX" AND Sprint = "DX DMP 2.3.0" AND status = "verified"', maxResults=1000))
+    issue_new = len(jira.search_issues('project = SOL AND resolution = Unresolved AND labels = 移动展业 ORDER BY labels ASC, priority DESC, updated DESC',maxResults=1000))
+    issue_fixed = len(jira.search_issues('project = "DX" AND Sprint = "538" AND status = "Fixed"',maxResults=1000))
+    issue_verified = len(jira.search_issues('project = "DX" AND Sprint = "538" AND status = "verified"', maxResults=1000))
     return {"new_num":issue_new,"fixed_num":issue_fixed,"verified_num":issue_verified}
 
 #企业微信发送数据
@@ -38,13 +42,12 @@ def send_message():
 
 
 #设置定时发送的时间
-def send_time():
-    while 1 == 1:
-        dt_ms = datetime.datetime.now().strftime('%H:%M:%S')
-        if dt_ms == "09:50:00" or dt_ms == "17:50:00":
-            send_message()
-            time.sleep(60)
-            continue
+# def send_time():
+#     while 1 == 1:
+#         dt_ms = datetime.datetime.now().strftime('%H:%M:%S')
+#         if dt_ms == "09:50:00" or dt_ms == "17:50:00":
+#             send_message()
+#             time.sleep(60)
+#             continue
 
-
-a=send_time()
+search_jira()
